@@ -20,12 +20,12 @@
         "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/fragment_color_display.xml"
     },
     {
-        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
         "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/layout_fragment_input.xml.flat",
         "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/fragment_input.xml"
+    },
+    {
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xhdpi/ic_launcher.png"
     },
     {
         "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/navigation_nav_graph.xml.flat",

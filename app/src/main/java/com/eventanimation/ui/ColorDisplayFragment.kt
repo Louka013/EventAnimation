@@ -26,7 +26,7 @@ class ColorDisplayFragment : Fragment() {
     
     // Animation configuration
     private val ANIMATION_FREQUENCY = 2.0 // Hz - Change this to your desired frequency
-    private val START_TIME = "14:59:10" // 24-hour format with seconds - Change this to your desired start time
+    private val START_TIME = "15:09:10" // 24-hour format with seconds - Change this to your desired start time
     
     // Animation variables
     private var animationHandler: Handler? = null
