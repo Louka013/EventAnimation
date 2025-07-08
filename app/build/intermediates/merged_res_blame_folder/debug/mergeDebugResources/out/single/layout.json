@@ -4,12 +4,12 @@
         "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/activity_main.xml"
     },
     {
-        "merged": "com.eventanimation.app-mergeDebugResources-52:/layout/fragment_input.xml",
-        "source": "com.eventanimation.app-main-55:/layout/fragment_input.xml"
-    },
-    {
         "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-mergeDebugResources-52:/layout/fragment_input.xml",
         "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/fragment_input.xml"
+    },
+    {
+        "merged": "com.eventanimation.app-mergeDebugResources-52:/layout/fragment_color_display.xml",
+        "source": "com.eventanimation.app-main-55:/layout/fragment_color_display.xml"
     },
     {
         "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-mergeDebugResources-52:/layout/fragment_color_display.xml",

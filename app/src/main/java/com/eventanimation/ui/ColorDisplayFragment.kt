@@ -26,7 +26,7 @@ class ColorDisplayFragment : Fragment() {
     
     // Animation configuration
     private val ANIMATION_FREQUENCY = 2.0 // Hz - Change this to your desired frequency
-    private val START_TIME = "18:30" // 24-hour format - Change this to your desired start time
+    private val START_TIME = "14:59:10" // 24-hour format with seconds - Change this to your desired start time
     
     // Animation variables
     private var animationHandler: Handler? = null
@@ -74,6 +74,7 @@ class ColorDisplayFragment : Fragment() {
         viewModel.displayColor.observe(viewLifecycleOwner) { color ->
             if (color.isNotEmpty()) {
                 targetColor = color
+                // Start animation immediately when color is set
                 startAnimation()
             }
         }
@@ -106,11 +107,11 @@ class ColorDisplayFragment : Fragment() {
     }
     
     private fun isTimeToStartAnimation(): Boolean {
-        val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
         val startTime = START_TIME
         
         return try {
-            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
             val currentTimeDate = timeFormat.parse(currentTime)
             val startTimeDate = timeFormat.parse(startTime)
             
@@ -129,16 +130,11 @@ class ColorDisplayFragment : Fragment() {
     }
     
     private fun startAnimation() {
-        if (!isTimeToStartAnimation()) {
-            // If it's not time yet, display solid color
-            displaySolidColor()
-            return
-        }
-        
         if (isAnimationActive) {
             stopAnimation()
         }
         
+        // Always start the animation logic, but behavior depends on time
         isAnimationActive = true
         val updateIntervalMs = (1000.0 / (ANIMATION_FREQUENCY * 10)).toLong() // Update 10 times per cycle for smooth animation
         
@@ -147,11 +143,11 @@ class ColorDisplayFragment : Fragment() {
                 if (isAnimationActive && _binding != null) {
                     if (isTimeToStartAnimation()) {
                         updateBlinkingColor()
-                        animationHandler?.postDelayed(this, updateIntervalMs)
                     } else {
-                        // Stop animation if we're before start time
+                        // Before start time, display solid color
                         displaySolidColor()
                     }
+                    animationHandler?.postDelayed(this, updateIntervalMs)
                 }
             }
         }

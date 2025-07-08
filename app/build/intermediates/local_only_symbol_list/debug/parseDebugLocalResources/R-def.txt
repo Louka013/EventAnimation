@@ -30,6 +30,7 @@ id action_input_to_color_display
 id back_button
 id colorDisplayFragment
 id color_background
+id countdown_timer
 id event_dropdown
 id event_dropdown_layout
 id inputFragment

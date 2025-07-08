@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -27,14 +28,18 @@ public final class FragmentColorDisplayBinding implements ViewBinding {
   public final ConstraintLayout colorBackground;
 
   @NonNull
+  public final TextView countdownTimer;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   private FragmentColorDisplayBinding(@NonNull ConstraintLayout rootView,
       @NonNull MaterialButton backButton, @NonNull ConstraintLayout colorBackground,
-      @NonNull ProgressBar progressBar) {
+      @NonNull TextView countdownTimer, @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
     this.backButton = backButton;
     this.colorBackground = colorBackground;
+    this.countdownTimer = countdownTimer;
     this.progressBar = progressBar;
   }
 
@@ -73,6 +78,12 @@ public final class FragmentColorDisplayBinding implements ViewBinding {
 
       ConstraintLayout colorBackground = (ConstraintLayout) rootView;
 
+      id = R.id.countdown_timer;
+      TextView countdownTimer = ViewBindings.findChildViewById(rootView, id);
+      if (countdownTimer == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -80,7 +91,7 @@ public final class FragmentColorDisplayBinding implements ViewBinding {
       }
 
       return new FragmentColorDisplayBinding((ConstraintLayout) rootView, backButton,
-          colorBackground, progressBar);
+          colorBackground, countdownTimer, progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
