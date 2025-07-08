@@ -3354,8 +3354,8 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
-id event_details_input
-id event_details_layout
+id event_dropdown
+id event_dropdown_layout
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3552,6 +3552,8 @@ id rightToLeft
 id right_icon
 id right_side
 id rounded
+id row_dropdown
+id row_dropdown_layout
 id row_index_key
 id rtl
 id save_non_transition_alpha
@@ -3574,8 +3576,10 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
-id seat_info_input
-id seat_info_layout
+id seat_dropdown
+id seat_dropdown_layout
+id section_dropdown
+id section_dropdown_layout
 id select_dialog_listview
 id selected
 id selection_type

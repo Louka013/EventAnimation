@@ -13,7 +13,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.eventanimation.R;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -24,19 +24,31 @@ public final class FragmentInputBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextInputEditText eventDetailsInput;
+  public final MaterialAutoCompleteTextView eventDropdown;
 
   @NonNull
-  public final TextInputLayout eventDetailsLayout;
+  public final TextInputLayout eventDropdownLayout;
 
   @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
-  public final TextInputEditText seatInfoInput;
+  public final MaterialAutoCompleteTextView rowDropdown;
 
   @NonNull
-  public final TextInputLayout seatInfoLayout;
+  public final TextInputLayout rowDropdownLayout;
+
+  @NonNull
+  public final MaterialAutoCompleteTextView seatDropdown;
+
+  @NonNull
+  public final TextInputLayout seatDropdownLayout;
+
+  @NonNull
+  public final MaterialAutoCompleteTextView sectionDropdown;
+
+  @NonNull
+  public final TextInputLayout sectionDropdownLayout;
 
   @NonNull
   public final MaterialButton submitButton;
@@ -45,16 +57,24 @@ public final class FragmentInputBinding implements ViewBinding {
   public final TextView titleText;
 
   private FragmentInputBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextInputEditText eventDetailsInput, @NonNull TextInputLayout eventDetailsLayout,
-      @NonNull ProgressBar progressBar, @NonNull TextInputEditText seatInfoInput,
-      @NonNull TextInputLayout seatInfoLayout, @NonNull MaterialButton submitButton,
+      @NonNull MaterialAutoCompleteTextView eventDropdown,
+      @NonNull TextInputLayout eventDropdownLayout, @NonNull ProgressBar progressBar,
+      @NonNull MaterialAutoCompleteTextView rowDropdown, @NonNull TextInputLayout rowDropdownLayout,
+      @NonNull MaterialAutoCompleteTextView seatDropdown,
+      @NonNull TextInputLayout seatDropdownLayout,
+      @NonNull MaterialAutoCompleteTextView sectionDropdown,
+      @NonNull TextInputLayout sectionDropdownLayout, @NonNull MaterialButton submitButton,
       @NonNull TextView titleText) {
     this.rootView = rootView;
-    this.eventDetailsInput = eventDetailsInput;
-    this.eventDetailsLayout = eventDetailsLayout;
+    this.eventDropdown = eventDropdown;
+    this.eventDropdownLayout = eventDropdownLayout;
     this.progressBar = progressBar;
-    this.seatInfoInput = seatInfoInput;
-    this.seatInfoLayout = seatInfoLayout;
+    this.rowDropdown = rowDropdown;
+    this.rowDropdownLayout = rowDropdownLayout;
+    this.seatDropdown = seatDropdown;
+    this.seatDropdownLayout = seatDropdownLayout;
+    this.sectionDropdown = sectionDropdown;
+    this.sectionDropdownLayout = sectionDropdownLayout;
     this.submitButton = submitButton;
     this.titleText = titleText;
   }
@@ -86,15 +106,15 @@ public final class FragmentInputBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.event_details_input;
-      TextInputEditText eventDetailsInput = ViewBindings.findChildViewById(rootView, id);
-      if (eventDetailsInput == null) {
+      id = R.id.event_dropdown;
+      MaterialAutoCompleteTextView eventDropdown = ViewBindings.findChildViewById(rootView, id);
+      if (eventDropdown == null) {
         break missingId;
       }
 
-      id = R.id.event_details_layout;
-      TextInputLayout eventDetailsLayout = ViewBindings.findChildViewById(rootView, id);
-      if (eventDetailsLayout == null) {
+      id = R.id.event_dropdown_layout;
+      TextInputLayout eventDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (eventDropdownLayout == null) {
         break missingId;
       }
 
@@ -104,15 +124,39 @@ public final class FragmentInputBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.seat_info_input;
-      TextInputEditText seatInfoInput = ViewBindings.findChildViewById(rootView, id);
-      if (seatInfoInput == null) {
+      id = R.id.row_dropdown;
+      MaterialAutoCompleteTextView rowDropdown = ViewBindings.findChildViewById(rootView, id);
+      if (rowDropdown == null) {
         break missingId;
       }
 
-      id = R.id.seat_info_layout;
-      TextInputLayout seatInfoLayout = ViewBindings.findChildViewById(rootView, id);
-      if (seatInfoLayout == null) {
+      id = R.id.row_dropdown_layout;
+      TextInputLayout rowDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (rowDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.seat_dropdown;
+      MaterialAutoCompleteTextView seatDropdown = ViewBindings.findChildViewById(rootView, id);
+      if (seatDropdown == null) {
+        break missingId;
+      }
+
+      id = R.id.seat_dropdown_layout;
+      TextInputLayout seatDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (seatDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.section_dropdown;
+      MaterialAutoCompleteTextView sectionDropdown = ViewBindings.findChildViewById(rootView, id);
+      if (sectionDropdown == null) {
+        break missingId;
+      }
+
+      id = R.id.section_dropdown_layout;
+      TextInputLayout sectionDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (sectionDropdownLayout == null) {
         break missingId;
       }
 
@@ -128,8 +172,9 @@ public final class FragmentInputBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentInputBinding((ConstraintLayout) rootView, eventDetailsInput,
-          eventDetailsLayout, progressBar, seatInfoInput, seatInfoLayout, submitButton, titleText);
+      return new FragmentInputBinding((ConstraintLayout) rootView, eventDropdown,
+          eventDropdownLayout, progressBar, rowDropdown, rowDropdownLayout, seatDropdown,
+          seatDropdownLayout, sectionDropdown, sectionDropdownLayout, submitButton, titleText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

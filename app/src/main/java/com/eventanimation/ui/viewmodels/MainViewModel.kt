@@ -48,37 +48,11 @@ class MainViewModel : ViewModel() {
                 
                 _currentSeatInfo.value = seatInfo
                 
-                // Initialize Firebase
-                repository.initializeAnonymousAuth()
-                repository.fetchRemoteConfig()
-                
-                // Calculate base color using seat number
-                val baseColor = calculator.calculateColor(seatInfo.seatNumber)
-                
-                // Check for remote config overrides
-                val remoteBlue = repository.getRemoteConfigValue("default_blue_color")
-                val remoteRed = repository.getRemoteConfigValue("default_red_color")
-                
-                val calculatedColor = if (seatInfo.seatNumber % 2 == 0) {
-                    if (remoteBlue.isNotEmpty() && calculator.isValidColor(remoteBlue)) remoteBlue else baseColor
+                // Calculate base color using seat number (even = blue, odd = red)
+                val finalColor = if (seatInfo.seatNumber % 2 == 0) {
+                    "#0000FF" // Blue for even seats
                 } else {
-                    if (remoteRed.isNotEmpty() && calculator.isValidColor(remoteRed)) remoteRed else baseColor
-                }
-                
-                // Check Firebase database for seat-specific overrides
-                val seatKey = seatInfo.toKey()
-                val firebaseColor = repository.getSeatColor(seatKey)
-                
-                // Use Firebase color if available, otherwise use calculated color
-                val finalColor = if (firebaseColor != null && calculator.isValidColor(firebaseColor)) {
-                    firebaseColor
-                } else {
-                    calculatedColor
-                }
-                
-                // Store the calculated color in Firebase if no override exists
-                if (firebaseColor == null) {
-                    repository.setSeatColor(seatKey, calculatedColor)
+                    "#FF0000" // Red for odd seats
                 }
                 
                 _displayColor.value = finalColor
