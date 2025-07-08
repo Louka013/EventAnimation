@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.10.1" type="partial_results">
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.eventanimation.ui.MainActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.string.error_empty_fields"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="12"
+            column="13"
+            startOffset="607"
+            endLine="12"
+            endColumn="38"
+            endOffset="632"/>
+        <location id="R.string.error_firebase"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="14"
+            column="13"
+            startOffset="767"
+            endLine="14"
+            endColumn="34"
+            endOffset="788"/>
+        <location id="R.string.error_invalid_seat"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="11"
+            column="13"
+            startOffset="528"
+            endLine="11"
+            endColumn="38"
+            endOffset="553"/>
+        <location id="R.string.error_network"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="13"
+            column="13"
+            startOffset="680"
+            endLine="13"
+            endColumn="33"
+            endOffset="700"/>
+        <location id="R.string.event_details_hint"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="6"
+            column="13"
+            startOffset="238"
+            endLine="6"
+            endColumn="38"
+            endOffset="263"/>
+        <location id="R.string.event_details_label"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="4"
+            column="13"
+            startOffset="115"
+            endLine="4"
+            endColumn="39"
+            endOffset="141"/>
+        <location id="R.string.loading"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="10"
+            column="13"
+            startOffset="481"
+            endLine="10"
+            endColumn="27"
+            endOffset="495"/>
+        <location id="R.string.seat_info_hint"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="7"
+            column="13"
+            startOffset="312"
+            endLine="7"
+            endColumn="34"
+            endOffset="333"/>
+        <location id="R.string.seat_info_label"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="5"
+            column="13"
+            startOffset="177"
+            endLine="5"
+            endColumn="35"
+            endOffset="199"/>
+        <entry
+            name="model"
+            string="color[md_theme_light_primary(U),md_theme_light_onPrimary(U),md_theme_light_primaryContainer(U),md_theme_light_onPrimaryContainer(U),md_theme_light_secondary(U),md_theme_light_onSecondary(U),md_theme_light_secondaryContainer(U),md_theme_light_onSecondaryContainer(U),md_theme_light_tertiary(U),md_theme_light_onTertiary(U),md_theme_light_tertiaryContainer(U),md_theme_light_onTertiaryContainer(U),md_theme_light_error(U),md_theme_light_errorContainer(U),md_theme_light_onError(U),md_theme_light_onErrorContainer(U),md_theme_light_background(U),md_theme_light_onBackground(U),md_theme_light_surface(U),md_theme_light_onSurface(U),md_theme_light_surfaceVariant(U),md_theme_light_onSurfaceVariant(U),md_theme_light_outline(U),md_theme_light_inverseOnSurface(U),md_theme_light_inverseSurface(U),md_theme_light_inversePrimary(U)],id[nav_host_fragment(U),color_background(D),back_button(D),progress_bar(D),countdown_timer(D),title_text(U),event_dropdown_layout(U),section_dropdown_layout(U),event_dropdown(D),row_dropdown_layout(U),section_dropdown(D),seat_dropdown_layout(U),row_dropdown(D),submit_button(U),seat_dropdown(D),nav_graph(D),inputFragment(U),action_input_to_color_display(R),colorDisplayFragment(U)],layout[activity_main(U),fragment_color_display(U),fragment_input(U)],mipmap[ic_launcher(U),ic_launcher_round(U)],navigation[nav_graph(U)],string[app_name(U),back_button(U),submit_button(U),event_details_label(D),seat_info_label(D),event_details_hint(D),seat_info_hint(D),loading(D),error_invalid_seat(D),error_empty_fields(D),error_network(D),error_firebase(D)],style[Theme_EventAnimation(U),Theme_EventAnimation_NoActionBar(U),Widget_Material3_TextInputLayout_OutlinedBox_ExposedDropdownMenu(R),Theme_Material3_DayNight(R),Theme(R)],xml[data_extraction_rules(U),backup_rules(U)];2d^32,2e^34,2f^33^20^21^1f^41^23^25^27^35,32^2a^2f^2c^2e,3f^42^0^1^2^3^4^5^6^7^8^9^a^b^c^d^e^f^10^11^12^13^14^15^16^17^18^19,40^3f^43;;;"/>
+    </map>
+
+</incidents>

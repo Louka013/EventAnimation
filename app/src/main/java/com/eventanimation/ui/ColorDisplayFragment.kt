@@ -26,7 +26,7 @@ class ColorDisplayFragment : Fragment() {
     
     // Animation configuration
     private val ANIMATION_FREQUENCY = 2.0 // Hz - Change this to your desired frequency
-    private val START_TIME = "15:09:10" // 24-hour format with seconds - Change this to your desired start time
+    private val START_TIME = "20:53:10" // 24-hour format with seconds - Change this to your desired start time
     
     // Animation variables
     private var animationHandler: Handler? = null
@@ -172,16 +172,27 @@ class ColorDisplayFragment : Fragment() {
             Toast.makeText(context, "Invalid color format", Toast.LENGTH_SHORT).show()
             displaySolidColor() // Fallback to solid color
         }
+        
+        // Hide countdown timer during animation
+        hideCountdownTimer()
     }
     
     private fun displaySolidColor() {
-        try {
-            if (targetColor.isNotEmpty()) {
-                val colorInt = Color.parseColor(targetColor)
-                binding.colorBackground.setBackgroundColor(colorInt)
+        // Before start time, display only white background with timer
+        if (!isTimeToStartAnimation()) {
+            binding.colorBackground.setBackgroundColor(Color.WHITE)
+            showCountdownTimer()
+        } else {
+            // After start time, display the target color
+            try {
+                if (targetColor.isNotEmpty()) {
+                    val colorInt = Color.parseColor(targetColor)
+                    binding.colorBackground.setBackgroundColor(colorInt)
+                }
+            } catch (e: IllegalArgumentException) {
+                Toast.makeText(context, "Invalid color format", Toast.LENGTH_SHORT).show()
             }
-        } catch (e: IllegalArgumentException) {
-            Toast.makeText(context, "Invalid color format", Toast.LENGTH_SHORT).show()
+            hideCountdownTimer()
         }
     }
     
@@ -204,6 +215,53 @@ class ColorDisplayFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         stopAnimation()
+    }
+    
+    private fun showCountdownTimer() {
+        val timeRemaining = calculateTimeRemaining()
+        if (timeRemaining > 0) {
+            binding.countdownTimer.text = formatTimeRemaining(timeRemaining)
+            binding.countdownTimer.visibility = View.VISIBLE
+            
+            // Set white background with padding for better visibility
+            binding.countdownTimer.setBackgroundColor(Color.WHITE)
+            binding.countdownTimer.setPadding(32, 16, 32, 16)
+        } else {
+            hideCountdownTimer()
+        }
+    }
+    
+    private fun hideCountdownTimer() {
+        binding.countdownTimer.visibility = View.GONE
+    }
+    
+    private fun calculateTimeRemaining(): Long {
+        return try {
+            val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+            val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            val currentTimeDate = timeFormat.parse(currentTime)
+            val startTimeDate = timeFormat.parse(START_TIME)
+            
+            val currentMillis = currentTimeDate?.time ?: 0L
+            val startMillis = startTimeDate?.time ?: 0L
+            
+            if (startMillis > currentMillis) {
+                startMillis - currentMillis
+            } else {
+                0L
+            }
+        } catch (e: Exception) {
+            0L
+        }
+    }
+    
+    private fun formatTimeRemaining(millis: Long): String {
+        val seconds = millis / 1000
+        val hours = seconds / 3600
+        val minutes = (seconds % 3600) / 60
+        val remainingSeconds = seconds % 60
+        
+        return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, remainingSeconds)
     }
     
     override fun onDestroyView() {
