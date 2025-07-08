@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude Firebase Auth tokens from cloud backup -->
+        <exclude domain="sharedpref" path="firebase_auth_*"/>
+        <exclude domain="database" path="databases/firebase_*"/>
+    </cloud-backup>
+    <device-transfer>
+        <!-- Allow device transfer but exclude sensitive data -->
+        <exclude domain="sharedpref" path="firebase_auth_*"/>
+    </device-transfer>
+</data-extraction-rules>

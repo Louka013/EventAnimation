@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude Firebase Auth tokens from backup -->
+    <exclude domain="sharedpref" path="firebase_auth_*"/>
+    <exclude domain="database" path="databases/firebase_*"/>
+</full-backup-content>
