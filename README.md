@@ -1,15 +1,16 @@
 # EventAnimation
 
-**EventAnimation** is an Android mobile application that displays full-screen colors based on user seat information at events. The app provides an immersive color experience synchronized with Firebase for real-time updates and customization.
+**EventAnimation** is an Android mobile application that displays full-screen animated colors based on user seat information at events. The app provides an immersive blinking animation experience with time-based control and dropdown-based seat selection.
 
 ## Features
 
-- **Seat-Based Color Display**: Shows blue for even seat numbers, red for odd seat numbers
-- **Flexible Seat Input**: Supports multiple seat format inputs (e.g., "Section A, Row 5, Seat 12" or "A-5-12")
+- **Animated Seat-Based Display**: Blinking animation between target color and black for even/odd seat numbers
+- **Time-Based Animation Control**: Animation starts at a predefined time (default: 18:30)
+- **Dropdown Seat Selection**: User-friendly dropdown menus for event, section, row, and seat selection
+- **Configurable Animation**: Adjustable frequency and start time settings
 - **Full-Screen Experience**: Immersive color display with hidden system UI
-- **Firebase Integration**: Real-time synchronization and remote configuration
+- **Firebase Integration**: Real-time synchronization and remote configuration (demo mode available)
 - **Anonymous Authentication**: Automatic device tracking without user accounts
-- **Dynamic Color Overrides**: Firebase-based color customization per seat
 
 ## User Manual
 
@@ -17,74 +18,77 @@
 
 1. **Installation**: Install the APK on your Android device (minimum Android 5.0)
 2. **Launch**: Open the EventAnimation app
-3. **Input Seat Information**: Enter your seat details in the input screen
+3. **Select Seat Information**: Use dropdown menus to select your seating details
 
 ### Using the App
 
-#### Step 1: Enter Seat Information
-When you first open the app, you'll see an input screen where you can enter your seat information.
+#### Step 1: Select Seat Information
+When you first open the app, you'll see dropdown menus for seat selection:
 
-**Supported Input Formats:**
-- `Section A, Row 5, Seat 12`
-- `A-5-12`
-- `A5-12`
-- `Section: A, Row: 5, Seat: 12`
+**Available Selection Options:**
+- **Event**: Football Stadium, Concert Hall, Theater, Basketball Arena
+- **Section**: Dynamic options based on selected event (e.g., North Stand, Balcony, Stalls)
+- **Row**: Numbers 1-30
+- **Seat Number**: Numbers 1-40
 
-#### Step 2: View Your Color
-After entering valid seat information, the app will:
-1. Parse your seat details
-2. Calculate the appropriate color based on your seat number
-3. Display the color in full-screen mode
+#### Step 2: Submit and View Animation
+After selecting all required information:
+1. Click the "Submit" button
+2. The app calculates your seat color
+3. Navigate to the full-screen animation display
 
-#### Step 3: Full-Screen Color Display
-The color display screen features:
-- **Full-screen color background** based on your seat number
+#### Step 3: Full-Screen Animation Display
+The animation screen features:
+- **Time-based activation**: Animation starts at configured time (default: 18:30)
+- **Blinking animation**: Alternates between target color and black
+- **Configurable frequency**: Default 2.0 Hz (2 blinks per second)
 - **Hidden system UI** for immersive experience
-- **Automatic color calculation**: Even seats = Blue, Odd seats = Red
-- **Real-time updates** if colors are changed remotely
+- **Touch controls**: Tap screen to show/hide back button
 
-### Color Logic
+### Animation Logic
 
-The app uses the following priority system for color determination:
+#### Color Assignment:
+- **Even seat numbers**: Blue (#0000FF) ↔ Black (#000000)
+- **Odd seat numbers**: Red (#FF0000) ↔ Black (#000000)
 
-1. **Firebase Database Override** (Highest Priority)
-   - Custom colors set for specific seats via Firebase
-   - Format: `seatColors/{section}_{row}_{seat}: "#color"`
+#### Time-Based Behavior:
+- **Before start time**: Displays solid color
+- **After start time**: Displays blinking animation at configured frequency
 
-2. **Remote Config Colors** (Medium Priority)
-   - Dynamic color themes from Firebase Remote Config
-   - Keys: `default_blue_color`, `default_red_color`
-
-3. **Default Calculated Colors** (Lowest Priority)
-   - Even seat numbers: Blue (#0000FF)
-   - Odd seat numbers: Red (#FF0000)
+#### Animation Configuration:
+Located in `ColorDisplayFragment.kt`:
+```kotlin
+private val ANIMATION_FREQUENCY = 2.0 // Hz (blinks per second)
+private val START_TIME = "18:30" // 24-hour format
+```
 
 ### Navigation
 
-- **Back Button**: Return to seat input screen from color display
-- **Re-enter Seat Info**: Use the back button to change your seat information
+- **Back Button**: Return to seat selection screen from animation display
+- **Dropdown Navigation**: Use dropdowns to change seat selection
 - **System Navigation**: Use Android's back gesture or button to navigate
 
 ### Error Handling
 
 The app provides user-friendly error messages for:
-- **Invalid seat format**: Clear instructions on supported formats
+- **Missing seat selections**: Prompts to complete all dropdown selections
 - **Network issues**: Graceful degradation when Firebase is unavailable
-- **Missing seat information**: Prompts to enter required information
+- **Animation errors**: Fallback to solid color display
 
 ### Offline Usage
 
 The app works offline with:
-- **Default color calculation** (even/odd logic)
-- **Cached remote config values**
-- **Local seat parsing and validation**
+- **Local color calculation** (even/odd logic)
+- **Dropdown-based seat selection**
+- **Local animation rendering**
+- **Demo mode** when Firebase is unavailable
 
-### Firebase Features
+### Firebase Features (Optional)
 
 #### Anonymous Authentication
 - Automatically signs in users for device tracking
+- Demo mode available when Firebase is not configured
 - No user accounts required
-- Enables personalized experiences
 
 #### Remote Configuration
 - Dynamic color theme updates
@@ -99,7 +103,7 @@ The app works offline with:
 ## Technical Requirements
 
 - **Android Version**: 5.0 (API level 21) or higher
-- **Internet Connection**: Required for Firebase features (optional for basic functionality)
+- **Internet Connection**: Optional (required only for Firebase features)
 - **Storage**: Minimal storage requirements (< 10MB)
 - **Permissions**: Internet access for Firebase synchronization
 
@@ -108,10 +112,8 @@ The app works offline with:
 ### Prerequisites
 - Android Studio 4.0 or higher
 - Android SDK 21 or higher
-- Firebase project with:
-  - Authentication enabled
-  - Realtime Database enabled
-  - Remote Config enabled
+- OpenJDK 21 Development Kit
+- Firebase project (optional for basic functionality)
 
 ### Building the App
 
@@ -121,19 +123,34 @@ git clone <repository-url>
 cd EventAnimation
 
 # Build debug APK
-./gradlew assembleDebug
+JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug
 
 # Install on connected device
-./gradlew installDebug
+JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew installDebug
 
 # Run tests
 ./gradlew test
 
 # Clean build
 ./gradlew clean
+
+# Lint check
+./gradlew lint
 ```
 
-### Firebase Configuration
+### Animation Configuration
+
+To customize the animation behavior, modify these values in `ColorDisplayFragment.kt`:
+
+```kotlin
+// Animation frequency in Hz (blinks per second)
+private val ANIMATION_FREQUENCY = 2.0
+
+// Start time in 24-hour format
+private val START_TIME = "18:30"
+```
+
+### Firebase Configuration (Optional)
 
 1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
 2. Add Android app with package name: `com.eventanimation`
@@ -160,26 +177,32 @@ cd EventAnimation
 ## Troubleshooting
 
 ### App Crashes on Startup
-- Ensure Firebase configuration is properly set up
-- Check that `google-services.json` is in the correct location
-- Verify internet connection for Firebase initialization
+- Ensure OpenJDK 21 Development Kit is installed
+- Check that launcher icons are properly generated
+- Verify device connectivity
 
-### Colors Not Updating
-- Check Firebase Remote Config settings
-- Verify database permissions
-- Ensure internet connectivity
+### Animation Not Starting
+- Check if current time is after the configured START_TIME
+- Verify ANIMATION_FREQUENCY is set to a positive value
+- Ensure all seat selections are completed
 
-### Seat Input Not Accepted
-- Use supported seat format examples
-- Check for typos in section/row/seat information
-- Ensure all required fields are provided
+### Dropdown Menus Not Working
+- Verify all dropdown selections are made in order (Event → Section → Row → Seat)
+- Check for binding safety in case of rapid navigation
+- Ensure fragment lifecycle is properly managed
+
+### Firebase Issues
+- App works in demo mode when Firebase is not configured
+- Check `google-services.json` file placement and validity
+- Verify internet connection for Firebase features
 
 ## Support
 
 For technical issues or questions:
 1. Check the troubleshooting section above
-2. Review Firebase console for configuration issues
-3. Verify input format matches supported examples
+2. Review Firebase console for configuration issues (if using Firebase)
+3. Verify animation configuration values
+4. Check device time settings for time-based features
 
 ## License
 
@@ -190,3 +213,22 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **v1.0.0**: Initial release with basic seat-based color display
 - **v1.1.0**: Added Firebase integration and remote configuration
 - **v1.2.0**: Enhanced seat parsing and error handling
+- **v1.3.0**: Added dropdown-based seat selection interface
+- **v1.4.0**: Implemented blinking animation with time-based control
+
+## Key Components
+
+### Animation System
+- **ColorDisplayFragment**: Main animation rendering and control
+- **Time-based activation**: Configurable start time
+- **Frequency control**: Adjustable blinking rate
+- **Color alternation**: Target color ↔ Black animation
+
+### User Interface
+- **InputFragment**: Dropdown-based seat selection
+- **MainActivity**: Navigation and fragment management
+- **Material Design**: Modern UI components and styling
+
+### Data Flow
+- **Dropdown selection** → **Seat parsing** → **Color calculation** → **Animation rendering**
+- **Firebase integration** (optional) → **Real-time updates** → **Color overrides**
