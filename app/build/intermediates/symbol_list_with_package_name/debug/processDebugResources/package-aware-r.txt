@@ -3225,6 +3225,7 @@ id action_context_bar
 id action_divider
 id action_image
 id action_input_to_color_display
+id action_input_to_flash_display
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
@@ -3271,6 +3272,7 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id buttonPanel
+id button_container
 id cache_measures
 id callMeasure
 id cancel_button
@@ -3351,6 +3353,7 @@ id edit_query
 id edit_text_id
 id elastic
 id embed
+id emergency_stop_button
 id end
 id endToStart
 id enterAlways
@@ -3371,6 +3374,12 @@ id fitStart
 id fitToContents
 id fitXY
 id fixed
+id flashDisplayFragment
+id flash_background
+id flash_indicator
+id flash_info_container
+id flash_mode_switch
+id flash_pattern_text
 id flip
 id floating
 id forever
@@ -3531,11 +3540,13 @@ id parent
 id parentPanel
 id parentRelative
 id parent_matrix
+id participant_count
 id password_toggle
 id path
 id pathRelative
 id peekHeight
 id percent
+id phase_indicator
 id pin
 id position
 id postLayout
@@ -3625,6 +3636,7 @@ id submenuarrow
 id submit_area
 id submit_button
 id supportScrollUp
+id sync_status
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3832,6 +3844,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_color_display
+layout fragment_flash_display
 layout fragment_input
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity

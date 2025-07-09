@@ -134,6 +134,7 @@ class InputFragment : Fragment() {
                      selectedSeat != null
         val isLoading = viewModel.isLoading.value ?: false
         binding.submitButton.isEnabled = isValid && !isLoading
+        binding.flashModeSwitch.isEnabled = isValid && !isLoading
     }
     
     private fun setupObservers() {
@@ -151,7 +152,15 @@ class InputFragment : Fragment() {
         
         viewModel.displayColor.observe(viewLifecycleOwner) { color ->
             if (color.isNotEmpty()) {
+                // Always navigate to ColorDisplayFragment - it now handles both modes
                 findNavController().navigate(R.id.action_input_to_color_display)
+            }
+        }
+        
+        viewModel.flashPattern.observe(viewLifecycleOwner) { pattern ->
+            pattern?.let {
+                // Flash pattern is ready, could navigate to flash display
+                // For now, we'll let user choose between color and flash modes
             }
         }
     }
@@ -163,6 +172,10 @@ class InputFragment : Fragment() {
                 val seatInfo = "$selectedSection, Row $selectedRow, Seat $selectedSeat"
                 viewModel.processSeating(eventDetails, seatInfo)
             }
+        }
+        
+        binding.flashModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setFlashModeEnabled(isChecked)
         }
     }
     

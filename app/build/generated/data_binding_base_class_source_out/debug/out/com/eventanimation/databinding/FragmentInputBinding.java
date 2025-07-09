@@ -4,6 +4,7 @@ package com.eventanimation.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.eventanimation.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
@@ -24,10 +26,16 @@ public final class FragmentInputBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final LinearLayout buttonContainer;
+
+  @NonNull
   public final MaterialAutoCompleteTextView eventDropdown;
 
   @NonNull
   public final TextInputLayout eventDropdownLayout;
+
+  @NonNull
+  public final SwitchMaterial flashModeSwitch;
 
   @NonNull
   public final ProgressBar progressBar;
@@ -57,17 +65,20 @@ public final class FragmentInputBinding implements ViewBinding {
   public final TextView titleText;
 
   private FragmentInputBinding(@NonNull ConstraintLayout rootView,
-      @NonNull MaterialAutoCompleteTextView eventDropdown,
-      @NonNull TextInputLayout eventDropdownLayout, @NonNull ProgressBar progressBar,
-      @NonNull MaterialAutoCompleteTextView rowDropdown, @NonNull TextInputLayout rowDropdownLayout,
+      @NonNull LinearLayout buttonContainer, @NonNull MaterialAutoCompleteTextView eventDropdown,
+      @NonNull TextInputLayout eventDropdownLayout, @NonNull SwitchMaterial flashModeSwitch,
+      @NonNull ProgressBar progressBar, @NonNull MaterialAutoCompleteTextView rowDropdown,
+      @NonNull TextInputLayout rowDropdownLayout,
       @NonNull MaterialAutoCompleteTextView seatDropdown,
       @NonNull TextInputLayout seatDropdownLayout,
       @NonNull MaterialAutoCompleteTextView sectionDropdown,
       @NonNull TextInputLayout sectionDropdownLayout, @NonNull MaterialButton submitButton,
       @NonNull TextView titleText) {
     this.rootView = rootView;
+    this.buttonContainer = buttonContainer;
     this.eventDropdown = eventDropdown;
     this.eventDropdownLayout = eventDropdownLayout;
+    this.flashModeSwitch = flashModeSwitch;
     this.progressBar = progressBar;
     this.rowDropdown = rowDropdown;
     this.rowDropdownLayout = rowDropdownLayout;
@@ -106,6 +117,12 @@ public final class FragmentInputBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.button_container;
+      LinearLayout buttonContainer = ViewBindings.findChildViewById(rootView, id);
+      if (buttonContainer == null) {
+        break missingId;
+      }
+
       id = R.id.event_dropdown;
       MaterialAutoCompleteTextView eventDropdown = ViewBindings.findChildViewById(rootView, id);
       if (eventDropdown == null) {
@@ -115,6 +132,12 @@ public final class FragmentInputBinding implements ViewBinding {
       id = R.id.event_dropdown_layout;
       TextInputLayout eventDropdownLayout = ViewBindings.findChildViewById(rootView, id);
       if (eventDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.flash_mode_switch;
+      SwitchMaterial flashModeSwitch = ViewBindings.findChildViewById(rootView, id);
+      if (flashModeSwitch == null) {
         break missingId;
       }
 
@@ -172,9 +195,10 @@ public final class FragmentInputBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentInputBinding((ConstraintLayout) rootView, eventDropdown,
-          eventDropdownLayout, progressBar, rowDropdown, rowDropdownLayout, seatDropdown,
-          seatDropdownLayout, sectionDropdown, sectionDropdownLayout, submitButton, titleText);
+      return new FragmentInputBinding((ConstraintLayout) rootView, buttonContainer, eventDropdown,
+          eventDropdownLayout, flashModeSwitch, progressBar, rowDropdown, rowDropdownLayout,
+          seatDropdown, seatDropdownLayout, sectionDropdown, sectionDropdownLayout, submitButton,
+          titleText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

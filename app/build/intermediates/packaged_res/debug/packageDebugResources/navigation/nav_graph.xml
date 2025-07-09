@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_input_to_color_display"
             app:destination="@id/colorDisplayFragment" />
+        <action
+            android:id="@+id/action_input_to_flash_display"
+            app:destination="@id/flashDisplayFragment" />
     </fragment>
 
     <fragment
@@ -20,5 +23,10 @@
         android:name="com.eventanimation.ui.ColorDisplayFragment"
         android:label="Color Display"
         tools:layout="@layout/fragment_color_display" />
+
+    <fragment
+        android:id="@+id/flashDisplayFragment"
+        android:name="com.eventanimation.ui.SimpleFlashDisplayFragment"
+        android:label="Simple Flash Display" />
 
 </navigation>

@@ -1,19 +1,28 @@
 package com.eventanimation.ui
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.eventanimation.databinding.FragmentColorDisplayBinding
 import com.eventanimation.ui.viewmodels.MainViewModel
+import com.eventanimation.utils.AnimationConstants
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,14 +34,30 @@ class ColorDisplayFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
     
     // Animation configuration
-    private val ANIMATION_FREQUENCY = 2.0 // Hz - Change this to your desired frequency
-    private val START_TIME = "20:53:10" // 24-hour format with seconds - Change this to your desired start time
+    private val ANIMATION_FREQUENCY = AnimationConstants.ANIMATION_FREQUENCY
+    private val START_TIME = AnimationConstants.START_TIME
     
     // Animation variables
     private var animationHandler: Handler? = null
     private var animationRunnable: Runnable? = null
     private var targetColor: String = ""
     private var isAnimationActive = false
+    
+    // Flash variables
+    private var cameraManager: CameraManager? = null
+    private var cameraId: String? = null
+    private var hasFlash = false
+    private var isFlashModeEnabled = false
+    
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            initializeCameraFlash()
+        } else {
+            Toast.makeText(context, "Camera permission required for flash mode", Toast.LENGTH_LONG).show()
+        }
+    }
     
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,6 +77,7 @@ class ColorDisplayFragment : Fragment() {
         setupObservers()
         setupClickListeners()
         initializeAnimation()
+        checkFlashModeAndSetup()
     }
     
     private fun setupFullscreen() {
@@ -68,6 +94,53 @@ class ColorDisplayFragment : Fragment() {
     
     private fun initializeAnimation() {
         animationHandler = Handler(Looper.getMainLooper())
+    }
+    
+    private fun checkFlashModeAndSetup() {
+        // Check if flash mode is enabled
+        isFlashModeEnabled = viewModel.isFlashModeEnabled.value ?: false
+        
+        if (isFlashModeEnabled) {
+            // Flash mode ON - set black background and initialize camera flash
+            binding.colorBackground.setBackgroundColor(Color.BLACK)
+            checkPermissionsAndInitialize()
+        } else {
+            // Flash mode OFF - normal color mode (will be set when color is available)
+        }
+    }
+    
+    private fun checkPermissionsAndInitialize() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                initializeCameraFlash()
+            }
+            else -> {
+                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
+        }
+    }
+    
+    private fun initializeCameraFlash() {
+        try {
+            cameraManager = requireContext().getSystemService(Context.CAMERA_SERVICE) as CameraManager
+            val cameraIdList = cameraManager?.cameraIdList
+            
+            hasFlash = requireContext().packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
+            
+            if (hasFlash && cameraIdList != null && cameraIdList.isNotEmpty()) {
+                cameraId = cameraIdList[0]
+                Log.d("ColorDisplayFragment", "Camera flash initialized successfully")
+            } else {
+                Log.w("ColorDisplayFragment", "Camera flash not available")
+                hasFlash = false
+            }
+        } catch (e: Exception) {
+            Log.e("ColorDisplayFragment", "Error initializing camera flash: ${e.message}")
+            hasFlash = false
+        }
     }
     
     private fun setupObservers() {
@@ -159,15 +232,28 @@ class ColorDisplayFragment : Fragment() {
     
     private fun updateBlinkingColor() {
         try {
-            val shouldShowTargetColor = is_blink_on()
-            val colorToDisplay = if (shouldShowTargetColor) {
-                targetColor
+            if (isFlashModeEnabled && hasFlash) {
+                // Flash mode: use camera flash
+                val shouldFlash = is_blink_on()
+                if (shouldFlash) {
+                    turnOnCameraFlash()
+                } else {
+                    turnOffCameraFlash()
+                }
+                // Keep background black in flash mode
+                binding.colorBackground.setBackgroundColor(Color.BLACK)
             } else {
-                "#000000" // Black
+                // Color mode: use screen colors
+                val shouldShowTargetColor = is_blink_on()
+                val colorToDisplay = if (shouldShowTargetColor) {
+                    targetColor
+                } else {
+                    "#000000" // Black
+                }
+                
+                val colorInt = Color.parseColor(colorToDisplay)
+                binding.colorBackground.setBackgroundColor(colorInt)
             }
-            
-            val colorInt = Color.parseColor(colorToDisplay)
-            binding.colorBackground.setBackgroundColor(colorInt)
         } catch (e: IllegalArgumentException) {
             Toast.makeText(context, "Invalid color format", Toast.LENGTH_SHORT).show()
             displaySolidColor() // Fallback to solid color
@@ -202,6 +288,31 @@ class ColorDisplayFragment : Fragment() {
             animationHandler?.removeCallbacks(runnable)
         }
         animationRunnable = null
+        
+        // Ensure flash is off when stopping
+        if (isFlashModeEnabled) {
+            turnOffCameraFlash()
+        }
+    }
+    
+    private fun turnOnCameraFlash() {
+        try {
+            cameraManager?.setTorchMode(cameraId ?: "", true)
+        } catch (e: CameraAccessException) {
+            Log.e("ColorDisplayFragment", "Error turning on camera flash: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("ColorDisplayFragment", "Unexpected error with camera flash: ${e.message}")
+        }
+    }
+    
+    private fun turnOffCameraFlash() {
+        try {
+            cameraManager?.setTorchMode(cameraId ?: "", false)
+        } catch (e: CameraAccessException) {
+            Log.e("ColorDisplayFragment", "Error turning off camera flash: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("ColorDisplayFragment", "Unexpected error with camera flash: ${e.message}")
+        }
     }
     
     override fun onResume() {
@@ -271,10 +382,19 @@ class ColorDisplayFragment : Fragment() {
         stopAnimation()
         animationHandler = null
         
+        // Ensure flash is off
+        if (isFlashModeEnabled) {
+            turnOffCameraFlash()
+        }
+        
         // Restore system UI
-        requireActivity().window.apply {
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-            clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        try {
+            requireActivity().window.apply {
+                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+                clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            }
+        } catch (e: Exception) {
+            Log.e("ColorDisplayFragment", "Error restoring system UI: ${e.message}")
         }
         
         _binding = null
