@@ -217,7 +217,7 @@ class FlashDisplayFragment : Fragment() {
                 updateFlashPatternDisplay()
                 
                 // Check if flash mode is enabled
-                val isFlashModeEnabled = viewModel.isFlashModeEnabled.value ?: false
+                val isFlashModeEnabled = viewModel.isFlashModeEnabled
                 if (isFlashModeEnabled) {
                     // Flash mode ON: black screen with flash
                     binding.flashBackground.setBackgroundColor(android.graphics.Color.BLACK)

@@ -1,67 +1,71 @@
 [
     {
-        "merged": "com.eventanimation.app-debug-53:/layout_fragment_flash_display.xml.flat",
-        "source": "com.eventanimation.app-main-55:/layout/fragment_flash_display.xml"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-hdpi/ic_launcher.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/layout_fragment_flash_display.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/fragment_flash_display.xml"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/navigation_nav_graph.xml.flat",
-        "source": "com.eventanimation.app-main-55:/navigation/nav_graph.xml"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-mdpi/ic_launcher.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/layout_fragment_color_display.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/fragment_color_display.xml"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/layout_fragment_color_display.xml.flat",
-        "source": "com.eventanimation.app-main-55:/layout/fragment_color_display.xml"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/layout_fragment_input.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/fragment_input.xml"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/xml_backup_rules.xml.flat",
-        "source": "com.eventanimation.app-main-55:/xml/backup_rules.xml"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/navigation_nav_graph.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/navigation/nav_graph.xml"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/xml_backup_rules.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/layout_activity_main.xml.flat",
-        "source": "com.eventanimation.app-main-55:/layout/activity_main.xml"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.eventanimation.app-main-55:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/layout_activity_main.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/layout/activity_main.xml"
     },
     {
-        "merged": "com.eventanimation.app-debug-53:/xml_data_extraction_rules.xml.flat",
-        "source": "com.eventanimation.app-main-55:/xml/data_extraction_rules.xml"
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-debug-53:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/baylibre/.gradle/daemon/8.12/com.eventanimation.app-main-55:/xml/data_extraction_rules.xml"
     },
     {
         "merged": "com.eventanimation.app-debug-53:/layout_fragment_input.xml.flat",

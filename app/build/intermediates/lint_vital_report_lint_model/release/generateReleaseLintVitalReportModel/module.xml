@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/home/baylibre/Documents/AndroidStudioProjects/EventAnimation/app"
+    name=":app"
+    type="APP"
+    maven="EventAnimation:app:unspecified"
+    agpVersion="8.10.1"
+    buildFolder="build"
+    bootClassPath="/home/baylibre/Android/Sdk/platforms/android-34/android.jar:/home/baylibre/Android/Sdk/build-tools/35.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-34"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

@@ -3378,7 +3378,6 @@ id flashDisplayFragment
 id flash_background
 id flash_indicator
 id flash_info_container
-id flash_mode_switch
 id flash_pattern_text
 id flip
 id floating

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.10.1" type="incidents">
+
+    <incident
+        id="FullBackupContent"
+        severity="fatal"
+        message="Subdirectories are not allowed for domain `database`">
+        <location
+            file="${:app*release*MAIN*sourceProvider*0*resDir*0}/xml/backup_rules.xml"
+            line="5"
+            column="38"
+            startOffset="210"
+            endLine="5"
+            endColumn="58"
+            endOffset="230"/>
+    </incident>
+
+    <incident
+        id="FullBackupContent"
+        severity="fatal"
+        message="Subdirectories are not allowed for domain `database`">
+        <location
+            file="${:app*release*MAIN*sourceProvider*0*resDir*0}/xml/data_extraction_rules.xml"
+            line="6"
+            column="42"
+            startOffset="249"
+            endLine="6"
+            endColumn="62"
+            endOffset="269"/>
+    </incident>
+
+</incidents>

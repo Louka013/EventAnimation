@@ -10,6 +10,7 @@ import com.eventanimation.data.FlashPatternCalculator
 import com.eventanimation.data.SeatParser
 import com.eventanimation.data.models.EventDetails
 import com.eventanimation.data.models.SeatInfo
+import com.eventanimation.utils.AnimationConstants
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
@@ -43,8 +44,9 @@ class MainViewModel : ViewModel() {
     private val _flashFrequency = MutableLiveData<Int>()
     val flashFrequency: LiveData<Int> = _flashFrequency
     
-    private val _isFlashModeEnabled = MutableLiveData<Boolean>()
-    val isFlashModeEnabled: LiveData<Boolean> = _isFlashModeEnabled
+    // Animation type is now controlled by constant
+    val isFlashModeEnabled: Boolean
+        get() = AnimationConstants.CURRENT_ANIMATION_TYPE == AnimationConstants.AnimationType.FLASH_ANIMATION
     
     fun processSeating(eventDetailsString: String, seatInfoString: String) {
         viewModelScope.launch {
@@ -125,9 +127,8 @@ class MainViewModel : ViewModel() {
         _errorMessage.value = null
     }
     
-    fun setFlashModeEnabled(enabled: Boolean) {
-        _isFlashModeEnabled.value = enabled
-    }
+    // Flash mode is now controlled by AnimationConstants.CURRENT_ANIMATION_TYPE
+    // This method is no longer needed but kept for compatibility
     
     fun updateFlashFrequency(frequency: Int) {
         viewModelScope.launch {

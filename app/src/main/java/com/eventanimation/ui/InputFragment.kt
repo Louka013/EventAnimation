@@ -134,7 +134,6 @@ class InputFragment : Fragment() {
                      selectedSeat != null
         val isLoading = viewModel.isLoading.value ?: false
         binding.submitButton.isEnabled = isValid && !isLoading
-        binding.flashModeSwitch.isEnabled = isValid && !isLoading
     }
     
     private fun setupObservers() {
@@ -172,10 +171,6 @@ class InputFragment : Fragment() {
                 val seatInfo = "$selectedSection, Row $selectedRow, Seat $selectedSeat"
                 viewModel.processSeating(eventDetails, seatInfo)
             }
-        }
-        
-        binding.flashModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.setFlashModeEnabled(isChecked)
         }
     }
     

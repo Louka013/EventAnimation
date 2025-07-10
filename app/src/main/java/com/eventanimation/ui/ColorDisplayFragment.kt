@@ -97,8 +97,8 @@ class ColorDisplayFragment : Fragment() {
     }
     
     private fun checkFlashModeAndSetup() {
-        // Check if flash mode is enabled
-        isFlashModeEnabled = viewModel.isFlashModeEnabled.value ?: false
+        // Check if flash mode is enabled from AnimationConstants
+        isFlashModeEnabled = AnimationConstants.CURRENT_ANIMATION_TYPE == AnimationConstants.AnimationType.FLASH_ANIMATION
         
         if (isFlashModeEnabled) {
             // Flash mode ON - set black background and initialize camera flash
